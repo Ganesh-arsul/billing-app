@@ -3,30 +3,22 @@ import ProductList from "./app/components/ProductList";
 
 function App() {
   return (
-    <div style={{
-      display: "flex",
-      justifyContent: "space-around",
-      padding: "30px",
-      backgroundColor: "#f5f5f5",
-      minHeight: "100vh"
-    }}>
-      <div style={{
-        width: "40%",
-        background: "white",
-        padding: "20px",
-        borderRadius: "10px"
-      }}>
-        <ProductList />
+    <div className="min-h-screen bg-gray-200 flex justify-center items-start py-6 px-2">
+      
+      <div className="w-full max-w-5xl flex flex-col md:flex-row gap-4">
+        
+        {/* Products */}
+        <div className="w-full md:w-1/2 bg-white p-4 sm:p-5 rounded-xl shadow-md">
+          <ProductList />
+        </div>
+
+        {/* Cart */}
+        <div className="w-full md:w-1/2 bg-white p-4 sm:p-5 rounded-xl shadow-md">
+          <Cart />
+        </div>
+
       </div>
 
-      <div style={{
-        width: "40%",
-        background: "white",
-        padding: "20px",
-        borderRadius: "10px"
-      }}>
-        <Cart />
-      </div>
     </div>
   );
 }

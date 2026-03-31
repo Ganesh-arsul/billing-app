@@ -17,11 +17,11 @@ export default function Cart() {
   });
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Basket</h2>
+    <div className="p-3 sm:p-4">
+      <h2 className="text-lg sm:text-xl font-bold mb-4">Basket</h2>
 
       {cart.length === 0 && (
-        <p className="text-gray-500">No items added</p>
+        <p className="text-gray-500 text-sm">No items added</p>
       )}
 
       <div className="space-y-4">
@@ -51,11 +51,17 @@ export default function Cart() {
           savings += itemSaving;
 
           return (
-            <div key={item.id} className="border-b pb-4">
+            <div
+              key={item.id}
+              className="border rounded-lg p-3 shadow-sm"
+            >
               {/* Top row */}
-              <div className="flex justify-between items-center">
-                <span className="font-medium">{item.name}</span>
-                <span className="text-gray-600">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
+                <span className="font-medium text-base sm:text-lg">
+                  {item.name}
+                </span>
+
+                <span className="text-gray-600 text-sm sm:text-base">
                   £ {item.price.toFixed(2)}
                 </span>
               </div>
@@ -63,16 +69,18 @@ export default function Cart() {
               {/* Quantity */}
               <div className="flex items-center gap-2 mt-2">
                 <button
-                  className="border px-2 rounded"
+                  className="border px-2 py-1 rounded text-sm"
                   onClick={() => dispatch(decreaseQty(item.id))}
                 >
                   -
                 </button>
 
-                <span>{item.quantity}</span>
+                <span className="text-sm sm:text-base">
+                  {item.quantity}
+                </span>
 
                 <button
-                  className="bg-blue-500 text-white px-2 rounded"
+                  className="bg-blue-500 text-white px-2 py-1 rounded text-sm"
                   onClick={() => dispatch(increaseQty(item.id))}
                 >
                   +
@@ -80,20 +88,20 @@ export default function Cart() {
               </div>
 
               {/* Price */}
-              <p className="text-gray-500 text-sm mt-2">
-                Item price £{item.price.toFixed(2)} * {item.quantity} = £
+              <p className="text-gray-500 text-xs sm:text-sm mt-2">
+                £{item.price.toFixed(2)} × {item.quantity} = £
                 {itemTotal.toFixed(2)}
               </p>
 
               {/* Savings */}
               {itemSaving > 0 && (
-                <p className="text-red-500 text-sm">
+                <p className="text-red-500 text-xs sm:text-sm">
                   Savings £{itemSaving.toFixed(2)}
                 </p>
               )}
 
               {/* Final cost */}
-              <p className="font-semibold mt-1">
+              <p className="font-semibold mt-1 text-sm sm:text-base">
                 Item cost £{(itemTotal - itemSaving).toFixed(2)}
               </p>
             </div>
@@ -104,7 +112,7 @@ export default function Cart() {
       {/* FINAL BILL */}
       <hr className="my-4" />
 
-      <div className="space-y-2">
+      <div className="space-y-2 text-sm sm:text-base">
         <div className="flex justify-between">
           <span>Sub Total:</span>
           <span>£ {subtotal.toFixed(2)}</span>
@@ -115,7 +123,7 @@ export default function Cart() {
           <span>£ {savings.toFixed(2)}</span>
         </div>
 
-        <div className="flex justify-between font-bold text-lg">
+        <div className="flex justify-between font-bold text-base sm:text-lg">
           <span>Total Amount:</span>
           <span>£ {(subtotal - savings).toFixed(2)}</span>
         </div>

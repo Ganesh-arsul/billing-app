@@ -14,28 +14,33 @@ export default function ProductList() {
   const cart = useSelector((state: any) => state.cart);
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4 border-b pb-2">Products</h2>
+    <div className="p-3 sm:p-4">
+      <h2 className="text-lg sm:text-xl font-bold mb-4 border-b pb-2">
+        Products
+      </h2>
 
       {products.map((p) => {
-        
         const isAdded = cart.some((item: any) => item.id === p.id);
 
         return (
           <div
             key={p.id}
-            className="flex justify-between items-center py-3 border-b"
+            className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 py-3 border-b"
           >
-            <span className="font-medium">{p.name}</span>
+            {/* Product Name */}
+            <span className="font-medium text-base sm:text-lg">
+              {p.name}
+            </span>
 
-            <div className="flex items-center gap-4">
-              <span className="text-gray-600">
+            {/* Price + Button */}
+            <div className="flex justify-between sm:justify-end items-center gap-3">
+              <span className="text-gray-600 text-sm sm:text-base">
                 £ {p.price.toFixed(2)}
               </span>
 
               <button
                 disabled={isAdded}
-                className={`px-3 py-1 rounded text-white ${
+                className={`px-3 py-1 text-sm sm:text-base rounded text-white transition ${
                   isAdded
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-blue-500 hover:bg-blue-600"
